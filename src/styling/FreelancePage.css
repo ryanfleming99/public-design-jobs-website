@@ -1,0 +1,10 @@
+.freelance-page {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.image-item img {
+  width: 100%;
+  height: auto;
+}
