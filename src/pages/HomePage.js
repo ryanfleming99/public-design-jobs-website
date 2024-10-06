@@ -40,7 +40,7 @@ const HomePage = () => {
         body: JSON.stringify({ email }) // Send the email to the Netlify function
       });
 
-      const result = await response.json();
+      // const result = await response.json();
 
       if (response.ok) {
         setMessage("Sign-up successful!");
