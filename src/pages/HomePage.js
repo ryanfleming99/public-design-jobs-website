@@ -11,8 +11,6 @@ const HomePage = () => {
   ];
 
   const [currentImage, setCurrentImage] = useState(0);
-  const [email, setEmail] = useState(""); // Missing email state
-  const [message, setMessage] = useState(""); // Missing message state
 
   useEffect(() => {
     const imageInterval = setInterval(() => {
@@ -28,31 +26,6 @@ const HomePage = () => {
     setOpenFAQ(openFAQ === index ? null : index);
   };
 
-  const handleSubmit = async e => {
-    e.preventDefault();
-
-    try {
-      const response = await fetch("/.netlify/functions/sendWelcomeEmail", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ email }) // Send the email to the Netlify function
-      });
-
-      // const result = await response.json();
-
-      if (response.ok) {
-        setMessage("Sign-up successful!");
-        setEmail(""); // Clear the email input after successful submission
-      } else {
-        setMessage("Failed to sign up. Please try again.");
-      }
-    } catch (error) {
-      setMessage("Error: Could not submit the form.");
-    }
-  };
-
   return (
     <div>
       <Navbar />
@@ -64,12 +37,10 @@ const HomePage = () => {
             "url(https://res.cloudinary.com/ryry/image/upload/v1728138865/public-design-jobs/ry_boi_hyperrealistic_white_only_alabaster_statues_london_white_ee1414a5-55e3-46fd-98d4-e581eb856dad_2_rxkr0k.webp)"
         }}
       >
-        {/* Gradient overlay to fade the background image into white */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white via-transparent via-75%"></div>
 
         {/* Text Content over the background */}
         <div className="relative z-10 text-center text-white p-4 flex flex-col items-center justify-center h-full w-full">
-          {/* Centered Heading and Paragraph */}
           <div className="md:w-full text-center p-4">
             <h2
               className="text-6xl font-bold mb-4"
@@ -105,25 +76,14 @@ const HomePage = () => {
               >
                 Sign up and explore freelance design work.
               </p>
-              {/* Form */}
-              <form
-                onSubmit={handleSubmit}
-                className="flex flex-col items-center space-y-4 mb-6 w-full"
-              >
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  value={email} // Bind the email input to state
-                  onChange={e => setEmail(e.target.value)} // Update state on input change
-                  className="p-2 border border-gray-300 rounded-lg w-3/4"
-                  required
-                />
-                <button className="w-1/2 p-2 bg-black text-white rounded-lg">
-                  Submit
-                </button>
-              </form>
-              {/* Display success or error message */}
-              {message && <p>{message}</p>}
+              {/* Embed SendGrid Form */}
+              <iframe
+                src="https://cdn.forms-content.sg-form.com/131aedd6-83e1-11ef-99e9-9e9726aec15e"
+                width="100%"
+                height="600px"
+                frameBorder="0"
+                title="Sign Up Form"
+              ></iframe>
             </div>
 
             {/* Returning Users Section */}

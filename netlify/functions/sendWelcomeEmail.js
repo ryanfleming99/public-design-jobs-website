@@ -1,4 +1,5 @@
 const sgMail = require("@sendgrid/mail");
+require("dotenv").config(); // Load environment variables from .env file
 
 exports.handler = async function(event, context) {
   if (event.httpMethod !== "POST") {
