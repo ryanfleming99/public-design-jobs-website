@@ -21,7 +21,7 @@ exports.handler = async function(event, context) {
 
   const msg = {
     to: email,
-    from: "ryan@publicdesignjobs.com", // Your verified SendGrid email
+    from: "ryan@publicdesignjobs.co.uk", // Your verified SendGrid email
     templateId: "d-f7640723d0984adf984dfa36ccaefec8", // Your SendGrid template ID
     dynamic_template_data: {
       email: email

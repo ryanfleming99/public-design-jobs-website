@@ -11,6 +11,8 @@ const HomePage = () => {
   ];
 
   const [currentImage, setCurrentImage] = useState(0);
+  const [email, setEmail] = useState(""); // Missing email state
+  const [message, setMessage] = useState(""); // Missing message state
 
   useEffect(() => {
     const imageInterval = setInterval(() => {
@@ -24,6 +26,31 @@ const HomePage = () => {
 
   const toggleFAQ = index => {
     setOpenFAQ(openFAQ === index ? null : index);
+  };
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("/.netlify/functions/sendWelcomeEmail", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email }) // Send the email to the Netlify function
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setMessage("Sign-up successful!");
+        setEmail(""); // Clear the email input after successful submission
+      } else {
+        setMessage("Failed to sign up. Please try again.");
+      }
+    } catch (error) {
+      setMessage("Error: Could not submit the form.");
+    }
   };
 
   return (
@@ -79,16 +106,24 @@ const HomePage = () => {
                 Sign up and explore freelance design work.
               </p>
               {/* Form */}
-              <form className="flex flex-col items-center space-y-4 mb-6 w-full">
+              <form
+                onSubmit={handleSubmit}
+                className="flex flex-col items-center space-y-4 mb-6 w-full"
+              >
                 <input
                   type="email"
                   placeholder="Enter your email"
+                  value={email} // Bind the email input to state
+                  onChange={e => setEmail(e.target.value)} // Update state on input change
                   className="p-2 border border-gray-300 rounded-lg w-3/4"
+                  required
                 />
                 <button className="w-1/2 p-2 bg-black text-white rounded-lg">
                   Submit
                 </button>
               </form>
+              {/* Display success or error message */}
+              {message && <p>{message}</p>}
             </div>
 
             {/* Returning Users Section */}
