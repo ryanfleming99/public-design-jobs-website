@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Navbar from "../components/Navbar";
+import Snow from "../styling/Snow.js";
 
 const HomePage = () => {
   const images = [
@@ -72,26 +73,32 @@ const HomePage = () => {
           <div className="md:w-full text-center p-4">
             <h2
               ref={textRef}
-              className="text-6xl font-bold mb-4"
+              className="text-6xl font-bold mb-4 text-white"
               style={{
-                textShadow: "rgb(0 0 0 / 33%) 2px 2px 8px",
+                textShadow: "rgb(0 0 0 / 11%) 2px 2px 8px",
                 transition: "transform 0.1s ease-out"
               }}
             >
               PUBLIC DESIGN JOBS
             </h2>
             <p
-              className="text-lg mb-6"
-              style={{
-                textShadow: "rgb(0 0 0 / 33%) 2px 2px 8px"
-              }}
+              className="text-xl mb-6 text-white font-semibold"
+              style={{ textShadow: "rgb(0 0 0 / 11%) 2px 2px 8px" }}
             >
               The #1 Platform for Creative Freelancers. Find work, showcase your
               talent, and grow your career.
             </p>
           </div>
           <div className="flex justify-center mt-8">
-            <div className="animate-bounce">
+            <div
+              className="animate-bounce cursor-pointer"
+              onClick={() => {
+                const targetElement = document.getElementById("target-section");
+                if (targetElement) {
+                  targetElement.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-12 w-12 text-white drop-shadow-lg"
@@ -112,17 +119,20 @@ const HomePage = () => {
       </div>
 
       {/* Section 2: Image Left, Profiles on Right */}
-      <div className="flex flex-col-reverse md:flex-row items-center justify-center min-h-screen h-screen p-6 md:p-24">
+      <div
+        id="target-section"
+        className="flex flex-col-reverse md:flex-row items-center justify-center md:p-24"
+      >
         {/* Left Side: Image */}
         <div className="md:w-1/2 h-3/6 md:h-[600px] w-full flex items-center justify-center p-4">
           <img
             src={images[currentImage]}
             alt="Slideshow"
-            className="h-full w-1/2 object-cover rounded-lg shadow-lg"
+            className="h-full w-full object-cover rounded-lg shadow-lg"
           />
         </div>
         {/* Right Side: Profiles */}
-        <div className="md:w-1/2 text-center md:text-left p-4">
+        <div className="md:w-1/2 text-center md:text-left p-4 ">
           <h2 className="text-4xl font-bold mb-4">Meet Our Freelancers</h2>
           <p className="text-lg mb-6">
             Discover talented freelancers from around the world. Here are some
@@ -158,11 +168,42 @@ const HomePage = () => {
         </div>
       </div>
 
+      {/* Centered Bounce Arrow */}
+      <div className="flex justify-center">
+        <div
+          className="animate-bounce cursor-pointer"
+          onClick={() => {
+            const targetElement = document.getElementById("target-section-two");
+            if (targetElement) {
+              targetElement.scrollIntoView({ behavior: "smooth" });
+            }
+          }}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-12 w-12 text-white drop-shadow-lg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </div>
+      </div>
+
       {/* FAQ Section */}
-      <div className="flex flex-col md:flex-row items-center justify-center min-h-screen h-3/6 p-6 md:p-24">
-        {/* Left Side: FAQ */}
-        <div className="md:w-1/2 text-center md:text-left p-4">
-          <h2 className="text-4xl font-bold mb-4">FAQ</h2>
+      <div
+        id="target-section-two"
+        className="flex flex-col items-center justify-center min-h-screen h-3/6 p-6 md:p-24"
+      >
+        {/* Centered FAQ Section */}
+        <div className="w-full md:w-2/3 lg:w-1/2 text-center p-4">
+          <h2 className="text-4xl font-bold mb-6">FAQ</h2>
           <div className="space-y-4">
             <div className="border-b border-gray-300">
               <button
@@ -172,7 +213,7 @@ const HomePage = () => {
                 What is Public Design Jobs?
               </button>
               {openFAQ === 1 && (
-                <p className="px-4 py-2 text-gray-600">
+                <p className="pt-4 pr-4 pb-4 text-gray-600 text-left">
                   Public Design Jobs is a platform that connects freelancers
                   with companies looking for creative talent. We offer a range
                   of opportunities from graphic design to web development,
@@ -188,7 +229,7 @@ const HomePage = () => {
                 How do I get started?
               </button>
               {openFAQ === 2 && (
-                <p className="px-4 py-2 text-gray-600">
+                <p className="pt-4 pr-4 pb-4 text-gray-600 text-left">
                   Simply sign up and create a profile. Once your profile is set
                   up, you can start applying for jobs, showcasing your
                   portfolio, and connecting with clients.
@@ -203,7 +244,7 @@ const HomePage = () => {
                 What services do you offer?
               </button>
               {openFAQ === 3 && (
-                <p className="px-4 py-2 text-gray-600">
+                <p className="pt-4 pr-4 pb-4 text-gray-600 text-left">
                   We provide a wide range of freelance opportunities in creative
                   fields such as graphic design, web development, content
                   writing, video production, and more. Our platform allows
@@ -213,14 +254,6 @@ const HomePage = () => {
               )}
             </div>
           </div>
-        </div>
-        {/* Right Side: Image */}
-        <div className="md:w-1/2 h-[50vh] md:h-[600px] w-full flex items-center justify-center p-4">
-          <img
-            src={images[currentImage]}
-            alt="Slideshow"
-            className="h-full w-1/2 object-cover rounded-lg shadow-lg"
-          />
         </div>
       </div>
     </div>

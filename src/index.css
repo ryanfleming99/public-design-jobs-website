@@ -51,3 +51,23 @@ code {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Snowflake Style */
+.snowflake {
+  position: fixed;
+  top: -10px;
+  color: white;
+  font-size: 1em;
+  opacity: 0.8;
+  pointer-events: none;
+  z-index: 9999;
+  animation: fall linear infinite;
+}
+
+/* Falling Animation */
+@keyframes fall {
+  to {
+    transform: translateY(100vh);
+  }
+}
+
