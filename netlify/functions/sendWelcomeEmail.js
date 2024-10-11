@@ -1,4 +1,4 @@
-const sgMail = require("@sendgrid/mail");
+/* const sgMail = require("@sendgrid/mail");
 require("dotenv").config(); // Load environment variables from .env file
 
 exports.handler = async function(event, context) {
@@ -43,3 +43,4 @@ exports.handler = async function(event, context) {
     };
   }
 };
+*/

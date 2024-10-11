@@ -28,6 +28,19 @@
   color: #61dafb;
 }
 
+/* Import the fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Montserrat:wght@400;700&display=swap');
+
+/* Font styles */
+body {
+  font-family: 'Lora', serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', sans-serif;
+}
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

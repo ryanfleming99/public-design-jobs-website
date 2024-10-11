@@ -1,0 +1,17 @@
+# netlify.toml
+
+[build]
+  # The build command for your project
+  command = "npm run build"
+  # The directory Netlify will publish your site from
+  publish = "build"
+  # Specify the directory for Netlify functions
+  functions = "netlify/functions"
+
+[[plugins]]
+  package = "@netlify/plugin-emails"
+
+[context.production.environment]
+  NETLIFY_EMAILS_PROVIDER = "sendgrid"
+  NETLIFY_EMAILS_PROVIDER_API_KEY = "your_sendgrid_api_key"
+  NETLIFY_EMAILS_SECRET = "your_unique_secret_key"
